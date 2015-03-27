@@ -1,6 +1,14 @@
 {
-  "name": "package",
-  "version": "0.0.0",
-  "dependencies": {}
+  "name": "<%= _.slugify(projectName) %>",
+  "version": "0.0.1",
+  "dependencies": {
+    <% if (usesjQuery) { %>
+    "jquery": "~2.1.3",
+    <% } %>
+    <% if (usesOutdatedBrowser) { %>
+    "outdated-browser": "~1.1.0",
+    <% } %>
+    "modernizer": "~2.8.2"
+  },
+  "devDependencies": {}
 }
-

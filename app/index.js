@@ -18,7 +18,7 @@ module.exports = yeoman.generators.Base.extend({
     var prompts = [
       {
         type: 'input',
-        name: 'name',
+        name: 'projectName',
         message: 'What\'s your project\'s name?',
         default: this.appname
       },
@@ -55,12 +55,19 @@ module.exports = yeoman.generators.Base.extend({
     ];
 
     this.prompt(prompts, function (props) {
-      this.appName = props.appName;
+      this.projectName = props.projectName;
       this.usesCompass = props.usesCompass;
       this.usesFoundation = props.usesFoundation;
       this.usesjQuery = props.usesjQuery;
       this.usesOutdatedBrowser = props.usesOutdatedBrowser;
       this.usesGoogleAnalytics = props.usesGoogleAnalytics;
+
+      this.log(this.projectName);
+      this.log(this.appname);
+
+      if (this.usesFoundation) {
+        this.usesjQuery = true;
+      }
 
       done();
     }.bind(this));
@@ -72,9 +79,10 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('_package.json'),
         this.destinationPath('package.json')
       );
-      this.fs.copy(
+      this.fs.copyTpl(
         this.templatePath('_bower.json'),
-        this.destinationPath('bower.json')
+        this.destinationPath('bower.json'),
+        { usesjQuery: this.usesjQuery, projectName: this.projectName }
       );
     },
 
@@ -103,7 +111,18 @@ module.exports = yeoman.generators.Base.extend({
       this.fs.copyTpl(
         this.templatePath('jade/_header.jade'),
         this.destinationPath('src/partials/_header.jade'),
-        { appName: this.appName }
+        { projectName: this.projectName }
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('js/_scripts.js'),
+        this.destinationPath('src/js/scripts.js'),
+        { usesjQuery: this.usesjQuery }
+      );
+
+      this.fs.copy(
+        this.templatePath('scss/'),
+        this.destinationPath('src/scss/')
       );
     }
   },
