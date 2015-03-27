@@ -62,9 +62,6 @@ module.exports = yeoman.generators.Base.extend({
       this.usesOutdatedBrowser = props.usesOutdatedBrowser;
       this.usesGoogleAnalytics = props.usesGoogleAnalytics;
 
-      this.log(this.projectName);
-      this.log(this.appname);
-
       if (this.usesFoundation) {
         this.usesjQuery = true;
       }
@@ -75,14 +72,16 @@ module.exports = yeoman.generators.Base.extend({
 
   writing: {
     app: function () {
-      this.fs.copy(
+      this.fs.copyTpl(
         this.templatePath('_package.json'),
-        this.destinationPath('package.json')
+        this.destinationPath('package.json'),
+        { projectName: this.projectName }
       );
+
       this.fs.copyTpl(
         this.templatePath('_bower.json'),
         this.destinationPath('bower.json'),
-        { usesjQuery: this.usesjQuery, projectName: this.projectName }
+        { usesjQuery: this.usesjQuery, projectName: this.projectName, usesOutdatedBrowser: this.usesOutdatedBrowser }
       );
     },
 
@@ -124,7 +123,145 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('scss/'),
         this.destinationPath('src/scss/')
       );
-    }
+
+      this.fs.copy(
+        this.templatePath('images/'),
+        this.destinationPath('src/images/')
+      );
+    },
+
+    gruntFile: function () {
+      var gruntConfig = {
+
+        sass: {
+          dist: {
+            options: {
+              style: 'compressed',
+              quiet: true
+            },
+            files: {
+              '<%= src %>/css/styles.css': '<%= src %>/scss/styles.scss'
+            }
+          }
+        },
+
+        jade: {
+          compile: {
+            options: {
+              pretty: true,
+              data: {
+                debug: false
+              }
+            },
+            files: [{
+              expand: true,
+              cwd: '<%= src %>/',
+              src: ['**/*.jade'],
+              ext: '.html',
+              dest: '<%= dist %>/'
+            }]
+          }
+        },
+
+        jshint: {
+          options: {
+            jshintrc: '.jshintrc'
+          },
+          all: [
+            'Gruntfile.js',
+            '<%= src %>/js/**/*.js'
+          ]
+        },
+
+        copy: {
+          dist: {
+            files: [{
+              expand: true,
+              cwd:'./',
+              src: [''],
+              dest: '<%= dist %>/'
+            }]
+          },
+        },
+
+        imagemin: {
+          target: {
+            files: [{
+              expand: true,
+              cwd: '<%= src %>/images/',
+              src: ['**/*.{jpg,gif,svg,jpeg,png}'],
+              dest: '<%= dist %>/images/'
+            }]
+          }
+        },
+
+        uglify: {
+          options: {
+            preserveComments: 'some',
+            mangle: false
+          }
+        },
+
+        watch: {
+          grunt: {
+            files: ['Gruntfile.js'],
+            tasks: ['sass', 'jshint']
+          },
+          sass: {
+            files: '<%= src %>/scss/**/*.scss',
+            tasks: ['sass']
+          },
+          jade: {
+            files: '<%= src %>/**/*.jade',
+            tasks: ['jade']
+          },
+          livereload: {
+            files: ['<%= src %>/**/*.jade', '!<%= src %>/bower_components/**', '<%= src %>/js/**/*.js', '<%= src %>/scss/**/*.css', '<%= src %>/images/**/*.{jpg,gif,svg,jpeg,png}'],
+            options: {
+              livereload: true
+            }
+          }
+        },
+
+        connect: {
+          dist: {
+            options: {
+              port: 9001,
+              base: '<%= dist %>/',
+              open: true,
+              keepalive: false,
+              livereload: true,
+              hostname: '127.0.0.1'
+            }
+          }
+        },
+
+        defaultTask: ['jade', 'sass', 'imagemin', 'jshint', 'uglify', 'copy', 'connect', 'watch']
+      };
+
+      gruntConfig.sass.dist.options.compass = this.usesCompass;
+
+      if (this.usesFoundation) {
+        gruntConfig.sass.dist.options.loadPath = '<%= src %>/bower_components/foundation/scss';
+      }
+
+      this.fs.copy(
+        this.templatePath('_Gruntfile.js'),
+        this.destinationPath('Gruntfile.js')
+      );
+
+      this.gruntfile.insertConfig('sass', JSON.stringify(gruntConfig.sass));
+      this.gruntfile.insertConfig('jade', JSON.stringify(gruntConfig.jade));
+      this.gruntfile.insertConfig('jshint', JSON.stringify(gruntConfig.jshint));
+      this.gruntfile.insertConfig('copy', JSON.stringify(gruntConfig.copy));
+      this.gruntfile.insertConfig('imagemin', JSON.stringify(gruntConfig.imagemin));
+      this.gruntfile.insertConfig('uglify', JSON.stringify(gruntConfig.uglify));
+      this.gruntfile.insertConfig('watch', JSON.stringify(gruntConfig.watch));
+      this.gruntfile.insertConfig('connect', JSON.stringify(gruntConfig.connect));
+
+      this.gruntfile.registerTask('default', gruntConfig.defaultTask);
+    },
+
   },
 
   install: function () {
