@@ -25,4 +25,7 @@ head
   //- meta(name='twitter:creator', content='')
      
   link(rel='stylesheet' href='css/styles.css')
+  <% if (usesOutdatedBrowser) { %>
+  link(rel='stylesheet', href='vendor/outdatedbrowser.css')
+  <% } %>
   script(src='vendor/modernizr.js')

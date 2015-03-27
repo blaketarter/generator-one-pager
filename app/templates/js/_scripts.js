@@ -1,12 +1,14 @@
+'use strict';
+
 <% if (usesjQuery) { %>
 
-  (function(window) {
+  (function(window, document, $) {
 
     $(document).ready(function() {
       // website code
     });
 
-  })(this);
+  })(this, document, $);
 
 <% } else { %>
   (function(window) {

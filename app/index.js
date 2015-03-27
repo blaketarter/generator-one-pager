@@ -110,7 +110,7 @@ module.exports = yeoman.generators.Base.extend({
       this.fs.copyTpl(
         this.templatePath('jade/_header.jade'),
         this.destinationPath('src/partials/_header.jade'),
-        { projectName: this.projectName }
+        { projectName: this.projectName, usesOutdatedBrowser: this.usesOutdatedBrowser }
       );
 
       this.fs.copyTpl(
@@ -137,10 +137,10 @@ module.exports = yeoman.generators.Base.extend({
           dist: {
             options: {
               style: 'compressed',
-              quiet: true
+              quiet: false
             },
             files: {
-              '<%= src %>/css/styles.css': '<%= src %>/scss/styles.scss'
+              '<%= dist %>/css/styles.css': '<%= src %>/scss/styles.scss'
             }
           }
         },
@@ -156,7 +156,7 @@ module.exports = yeoman.generators.Base.extend({
             files: [{
               expand: true,
               cwd: '<%= src %>/',
-              src: ['**/*.jade'],
+              src: ['index.jade'],
               ext: '.html',
               dest: '<%= dist %>/'
             }]
@@ -177,9 +177,10 @@ module.exports = yeoman.generators.Base.extend({
           dist: {
             files: [{
               expand: true,
+              flatten: true,
               cwd:'./',
-              src: [''],
-              dest: '<%= dist %>/'
+              src: ['bower_components/jquery/dist/jquery.js', 'bower_components/modernizer/modernizr.js', 'bower_components/outdated-browser/outdatedbrowser/outdatedbrowser.js', 'bower_components/outdated-browser/outdatedbrowser/outdatedbrowser.css'],
+              dest: '<%= dist %>/vendor/'
             }]
           },
         },
@@ -199,6 +200,11 @@ module.exports = yeoman.generators.Base.extend({
           options: {
             preserveComments: 'some',
             mangle: false
+          },
+          dist: {
+            files: {
+              '<%= dist %>/js/scripts.js': ['<%= src %>/js/scripts.js']
+            }
           }
         },
 

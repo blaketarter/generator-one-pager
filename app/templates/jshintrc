@@ -1,7 +1,7 @@
 {
   "node": true,
   "esnext": true,
-  "bitwise": true,
+  "bitwise": false,
   "camelcase": true,
   "curly": true,
   "eqeqeq": true,
@@ -12,6 +12,11 @@
   "noarg": true,
   "quotmark": "single",
   "undef": true,
-  "unused": true,
-  "strict": true
+  "unused": false,
+  "strict": true,
+  "validthis": true,
+  "browser": true,
+  "globals": {
+    "$": false
+  }
 }
