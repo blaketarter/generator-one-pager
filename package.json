@@ -20,7 +20,11 @@
     "app"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "one-pager",
+    "one",
+    "pager",
+    "website"
   ],
   "dependencies": {
     "yeoman-generator": "^0.18.9",
