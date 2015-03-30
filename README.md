@@ -70,3 +70,11 @@ one-pager
 |           |-- _normalize.scss
 |       |-- styles.scss
 ```
+#### SCSS Structure
+Currently one-pager is set up to use the manifest pattern, where every section of the scss structure is broken up semantically and all can be imported at once by simply importing the manifest file in every directory.
+
+## Note
+This is the first generator I've built and as such mistakes are expected, any feedback would be appreciated.
+
+## License
+[MIT License](http://en.wikipedia.org/wiki/MIT_License)
