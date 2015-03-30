@@ -24,7 +24,8 @@
     "one-pager",
     "one",
     "pager",
-    "website"
+    "website",
+    "jade"
   ],
   "dependencies": {
     "yeoman-generator": "^0.18.9",
