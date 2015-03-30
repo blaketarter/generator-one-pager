@@ -23,6 +23,7 @@ These libraries/extensions/tasks are included in every build.
 * [SCSS](http://sass-lang.com/)
 * [Autoprefixer](https://github.com/postcss/autoprefixer)
 * [Normalize.css](https://necolas.github.io/normalize.css/)
+* [Jade](http://jade-lang.com/)
 * [Imagemin](https://github.com/imagemin/imagemin)
 * [JSHint](http://jshint.com/)
 * [Livereload](http://livereload.com/)
@@ -70,6 +71,10 @@ one-pager
 |           |-- _normalize.scss
 |       |-- styles.scss
 ```
+
+#### Gruntfile
+So far the only grunt command is `grunt default` or simply `grunt`, which builds it out then starts and connects to port `:9001` then watches for changes.
+
 #### SCSS Structure
 Currently one-pager is set up to use the manifest pattern, where every section of the scss structure is broken up semantically and all can be imported at once by simply importing the manifest file in every directory.
 
