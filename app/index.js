@@ -222,7 +222,7 @@ module.exports = yeoman.generators.Base.extend({
             tasks: ['jade']
           },
           livereload: {
-            files: ['<%= src %>/**/*.jade', '!<%= src %>/bower_components/**', '<%= src %>/js/**/*.js', '<%= src %>/scss/**/*.css', '<%= src %>/images/**/*.{jpg,gif,svg,jpeg,png}'],
+            files: ['<%= src %>/**/*.jade', '!<%= src %>/bower_components/**', '<%= src %>/js/**/*.js', '<%= src %>/scss/**/*.scss', '<%= src %>/images/**/*.{jpg,gif,svg,jpeg,png}'],
             options: {
               livereload: true
             }
