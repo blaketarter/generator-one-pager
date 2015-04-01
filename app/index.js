@@ -81,7 +81,7 @@ module.exports = yeoman.generators.Base.extend({
       this.fs.copyTpl(
         this.templatePath('_bower.json'),
         this.destinationPath('bower.json'),
-        { usesjQuery: this.usesjQuery, projectName: this.projectName, usesOutdatedBrowser: this.usesOutdatedBrowser }
+        { usesjQuery: this.usesjQuery, projectName: this.projectName, usesOutdatedBrowser: this.usesOutdatedBrowser, usesFoundation: this.usesFoundation }
       );
     },
 
