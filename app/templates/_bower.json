@@ -8,6 +8,9 @@
     <% if (usesOutdatedBrowser) { %>
     "outdated-browser": "~1.1.0",
     <% } %>
+    <% if (usesFoundation) { %>
+    "foundation": "~5.5.1",
+    <% } %>
     "modernizer": "~2.8.2"
   },
   "devDependencies": {}
