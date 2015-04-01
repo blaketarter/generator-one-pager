@@ -1,1 +1,4 @@
 @import 'normalize';
+<% if (usesFoundation) { %>
+@import '../../../bower_components/foundation/scss/foundation'; // temp hack, im so sorry
+<% } %>

@@ -124,6 +124,12 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath('src/scss/')
       );
 
+      this.fs.copyTpl(
+        this.templatePath('scss/vendor/_manifest.scss'),
+        this.destinationPath('src/scss/vendor/_manifest.scss'),
+        { usesFoundation: this.usesFoundation }
+      );
+
       this.fs.copy(
         this.templatePath('images/'),
         this.destinationPath('src/images/')
