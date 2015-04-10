@@ -1,4 +1,4 @@
-# Generator One Pager [![npm version](https://badge.fury.io/js/generator-one-pager.svg)](http://badge.fury.io/js/generator-one-pager) [![Build Status](https://secure.travis-ci.org/blaketarter/generator-one-pager.png?branch=master)](https://travis-ci.org/blaketarter/generator-one-pager)
+# Generator One Pager [![npm version](https://badge.fury.io/js/generator-one-pager.svg)](http://badge.fury.io/js/generator-one-pager) [![Build Status](https://secure.travis-ci.org/blaketarter/generator-one-pager.png?branch=master)](https://travis-ci.org/blaketarter/generator-one-pager) [![Dependency Status](https://david-dm.org/blaketarter/generator-one-pager.svg?style=flat)](https://david-dm.org/blaketarter/generator-one-pager)
 
 A [Yeoman](http://yeoman.io) generator for quickly scaffolding a static one page website. Useful for things like landing pages and coming soon pages.
 
