@@ -1,5 +1,5 @@
 {
-  "name": "<%= _.slugify(projectName) %>",
+  "name": "<%= projectName %>",
   "version": "0.0.1",
   "dependencies": {
     <% if (usesjQuery) { %>
