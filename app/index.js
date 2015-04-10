@@ -114,6 +114,12 @@ module.exports = yeoman.generators.Base.extend({
       );
 
       this.fs.copyTpl(
+        this.templatePath('jade/_footer.jade'),
+        this.destinationPath('src/partials/_footer.jade'),
+        { usesjQuery: this.usesjQuery, usesOutdatedBrowser: this.usesOutdatedBrowser, usesGoogleAnalytics: this.usesGoogleAnalytics }
+      );
+
+      this.fs.copyTpl(
         this.templatePath('js/_scripts.js'),
         this.destinationPath('src/js/scripts.js'),
         { usesjQuery: this.usesjQuery }
