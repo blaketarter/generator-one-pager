@@ -33,18 +33,24 @@ module.exports = yeoman.generators.Base.extend({
 
   writing: {
     projectfiles: function () {
+      var oldManifest;
+
       this.fs.copyTpl(
         this.templatePath('jade/_page.jade'),
-        this.destinationPath('src/' + this.pagename + '.jade'),
+        this.destinationPath('src/' + this.pageName + '.jade'),
         { usesjQuery: this.usesjQuery, usesOutdatedBrowser: this.usesOutdatedBrowser, usesGoogleAnalytics: this.usesGoogleAnalytics }
       );
 
       this.fs.copy(
-        this.templatePath('scss/page/'),
+        this.templatePath('scss/pages/page'),
         this.destinationPath('src/scss/pages/' + this.pageName + '/')
       );
 
-      this.fs.appendFileSync('scss/pages/manifest.scss', '@import \'' + this.pageName + '/manifest\';');
+      oldManifest = this.fs.read('src/scss/pages/_manifest.scss');
+      
+      this.fs.delete('src/scss/pages/_manifest.scss');
+
+      this.fs.write('src/scss/pages/_manifest.scss', oldManifest + '\n@import \'' + this.pageName + '/manifest\';');
     },
   }
 });
