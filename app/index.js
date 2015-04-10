@@ -151,6 +151,16 @@ module.exports = yeoman.generators.Base.extend({
           }
         },
 
+        autoprefixer: {
+          options: {
+            browsers: ['> 1%', 'last 2 versions', 'ie 8', 'ie 9', 'Firefox ESR', 'Opera 12.1'],
+            remove: false
+          },
+          dist: {
+            src: '<%= dist %>/css/styles.css',
+          }
+        },
+
         jade: {
           compile: {
             options: {
@@ -162,7 +172,7 @@ module.exports = yeoman.generators.Base.extend({
             files: [{
               expand: true,
               cwd: '<%= src %>/',
-              src: ['index.jade'],
+              src: ['*.jade', '!_*.jade'],
               ext: '.html',
               dest: '<%= dist %>/'
             }]
@@ -221,7 +231,7 @@ module.exports = yeoman.generators.Base.extend({
           },
           sass: {
             files: '<%= src %>/scss/**/*.scss',
-            tasks: ['sass']
+            tasks: ['sass', 'autoprefixer']
           },
           jade: {
             files: '<%= src %>/**/*.jade',
@@ -248,7 +258,7 @@ module.exports = yeoman.generators.Base.extend({
           }
         },
 
-        defaultTask: ['jade', 'sass', 'imagemin', 'jshint', 'uglify', 'copy', 'connect', 'watch']
+        defaultTask: ['jade', 'sass', 'autoprefixer', 'imagemin', 'jshint', 'uglify', 'copy', 'connect', 'watch']
       };
 
       gruntConfig.sass.dist.options.compass = this.usesCompass;
@@ -263,6 +273,7 @@ module.exports = yeoman.generators.Base.extend({
       );
 
       this.gruntfile.insertConfig('sass', JSON.stringify(gruntConfig.sass));
+      this.gruntfile.insertConfig('autoprefixer', JSON.stringify(gruntConfig.autoprefixer));
       this.gruntfile.insertConfig('jade', JSON.stringify(gruntConfig.jade));
       this.gruntfile.insertConfig('jshint', JSON.stringify(gruntConfig.jshint));
       this.gruntfile.insertConfig('copy', JSON.stringify(gruntConfig.copy));
