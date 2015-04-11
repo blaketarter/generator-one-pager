@@ -264,7 +264,8 @@ module.exports = yeoman.generators.Base.extend({
           }
         },
 
-        defaultTask: ['jade', 'sass', 'autoprefixer', 'imagemin', 'jshint', 'uglify', 'copy', 'connect', 'watch']
+        defaultTask: ['jade', 'sass', 'autoprefixer', 'imagemin', 'jshint', 'uglify', 'copy', 'connect', 'watch'],
+        buildTask: ['jade', 'sass', 'autoprefixer', 'imagemin', 'jshint', 'uglify', 'copy']
       };
 
       gruntConfig.sass.dist.options.compass = this.usesCompass;
@@ -289,6 +290,7 @@ module.exports = yeoman.generators.Base.extend({
       this.gruntfile.insertConfig('connect', JSON.stringify(gruntConfig.connect));
 
       this.gruntfile.registerTask('default', gruntConfig.defaultTask);
+      this.gruntfile.registerTask('default', gruntConfig.buildTask);
     },
 
   },
