@@ -72,6 +72,11 @@ one-pager
 |       |-- styles.scss
 ```
 
+#### Page Sub-Generator
+There is a `:page` sub-generator that is available to use that can generate additional pages (then its no longer a one pager I guess).
+
+To use it is as simple as `yo one-pager:page`. It will then ask for the pages name and then create the scss file and jade file for that page.
+
 #### Gruntfile
 So far the only grunt command is `grunt default` or simply `grunt`, which builds it out then starts and connects to port `:9001` then watches for changes.
 
