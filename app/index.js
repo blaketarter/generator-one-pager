@@ -201,7 +201,7 @@ module.exports = yeoman.generators.Base.extend({
               expand: true,
               flatten: true,
               cwd:'./',
-              src: ['bower_components/jquery/dist/jquery.js', 'bower_components/modernizer/modernizr.js', 'bower_components/outdated-browser/outdatedbrowser/outdatedbrowser.js', 'bower_components/outdated-browser/outdatedbrowser/outdatedbrowser.css', 'bower_components/foundation/js/foundation.min.js'],
+              src: ['bower_components/jquery/dist/jquery.js', 'bower_components/modernizer/modernizr.js', 'bower_components/outdated-browser/outdatedbrowser/outdatedbrowser.js', 'bower_components/outdated-browser/outdatedbrowser/outdatedbrowser.css', 'bower_components/foundation/js/foundation.min.js', 'bower_components/html5shiv/dist/html5shiv.min.js'],
               dest: '<%= dist %>/vendor/'
             }]
           },
