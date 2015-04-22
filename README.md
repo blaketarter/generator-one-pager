@@ -27,6 +27,7 @@ These libraries/extensions/tasks are included in every build.
 * [Imagemin](https://github.com/imagemin/imagemin)
 * [JSHint](http://jshint.com/)
 * [Livereload](http://livereload.com/)
+* [HTML5shiv](https://github.com/aFarkas/html5shiv)
 
 #### Options
 
