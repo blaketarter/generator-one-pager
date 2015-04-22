@@ -244,7 +244,7 @@ module.exports = yeoman.generators.Base.extend({
             tasks: ['jade']
           },
           js: {
-            files: '<% src %>/js/**/*.js',
+            files: '<%= src %>/js/**/*.js',
             tasks: ['jshint', 'uglify']
           },
           livereload: {
