@@ -116,7 +116,7 @@ module.exports = yeoman.generators.Base.extend({
       this.fs.copyTpl(
         this.templatePath('jade/_footer.jade'),
         this.destinationPath('src/partials/_footer.jade'),
-        { usesjQuery: this.usesjQuery, usesOutdatedBrowser: this.usesOutdatedBrowser, usesGoogleAnalytics: this.usesGoogleAnalytics }
+        { usesjQuery: this.usesjQuery, usesOutdatedBrowser: this.usesOutdatedBrowser, usesGoogleAnalytics: this.usesGoogleAnalytics, usesFoundation: this.usesFoundation }
       );
 
       this.fs.copyTpl(
@@ -201,7 +201,7 @@ module.exports = yeoman.generators.Base.extend({
               expand: true,
               flatten: true,
               cwd:'./',
-              src: ['bower_components/jquery/dist/jquery.js', 'bower_components/modernizer/modernizr.js', 'bower_components/outdated-browser/outdatedbrowser/outdatedbrowser.js', 'bower_components/outdated-browser/outdatedbrowser/outdatedbrowser.css'],
+              src: ['bower_components/jquery/dist/jquery.js', 'bower_components/modernizer/modernizr.js', 'bower_components/outdated-browser/outdatedbrowser/outdatedbrowser.js', 'bower_components/outdated-browser/outdatedbrowser/outdatedbrowser.css', 'bower_components/foundation/js/foundation.min.js'],
               dest: '<%= dist %>/vendor/'
             }]
           },

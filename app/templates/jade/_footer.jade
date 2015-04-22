@@ -20,6 +20,9 @@ script(type='text/javascript').
     languagePath: ''
   });
 <% } %>
+<% if (usesFoundation) { %>
+script(src='vendor/foundation.min.js')
+<% } %>
 script(src="js/scripts.js")
 <% if (usesGoogleAnalytics) { %>
 script(type='text/javascript').
