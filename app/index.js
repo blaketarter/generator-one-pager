@@ -122,7 +122,7 @@ module.exports = yeoman.generators.Base.extend({
       this.fs.copyTpl(
         this.templatePath('js/_scripts.js'),
         this.destinationPath('src/js/scripts.js'),
-        { usesjQuery: this.usesjQuery }
+        { usesjQuery: this.usesjQuery, usesFoundation: this.usesFoundation }
       );
 
       this.fs.copy(
