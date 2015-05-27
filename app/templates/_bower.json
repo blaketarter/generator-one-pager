@@ -1,5 +1,5 @@
 {
-  "name": "<%= _.snakeCase(projectName) %>",
+  "name": "<%= snakeCase(projectName) %>",
   "version": "0.0.1",
   "dependencies": {
     <% if (usesjQuery) { %>

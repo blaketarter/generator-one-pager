@@ -2,6 +2,7 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var snakeCase = require('lodash').snakeCase;
 
 module.exports = yeoman.generators.Base.extend({
   initializing: function () {
@@ -75,13 +76,13 @@ module.exports = yeoman.generators.Base.extend({
       this.fs.copyTpl(
         this.templatePath('_package.json'),
         this.destinationPath('package.json'),
-        { projectName: this.projectName }
+        { projectName: this.projectName, snakeCase: snakeCase }
       );
 
       this.fs.copyTpl(
         this.templatePath('_bower.json'),
         this.destinationPath('bower.json'),
-        { usesjQuery: this.usesjQuery, projectName: this.projectName, usesOutdatedBrowser: this.usesOutdatedBrowser, usesFoundation: this.usesFoundation }
+        { usesjQuery: this.usesjQuery, projectName: this.projectName, usesOutdatedBrowser: this.usesOutdatedBrowser, usesFoundation: this.usesFoundation, snakeCase: snakeCase }
       );
     },
 
